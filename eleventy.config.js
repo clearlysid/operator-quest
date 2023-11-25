@@ -1,13 +1,6 @@
 const { DateTime } = require("luxon");
 
-const pluginNavigation = require("@11ty/eleventy-navigation");
-
 module.exports = function (eleventyConfig) {
-	eleventyConfig.addPassthroughCopy({ "./public/": "/" });
-
-	// Official plugins
-	eleventyConfig.addPlugin(pluginNavigation);
-
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
 		// Formatting tokens for Luxon: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
@@ -38,18 +31,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	return {
-		// Control which files Eleventy will process
-		templateFormats: [
-			"md",
-			"njk",
-			"html",
-			"liquid",
-		],
-
-		// Pre-process *.md files with: (default: `liquid`)
 		markdownTemplateEngine: "njk",
 		htmlTemplateEngine: "njk",
-
-		pathPrefix: "/",
 	};
 };
